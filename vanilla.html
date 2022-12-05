@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div id="root"></div>
+    </body>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script>
+        const root = document.getElementById("root");
+        //react-dom은 모든 react element들을 html body에 둘 수 있도록 해줌
+        //reactJs는 엔진(interactive한 ui를 만들수 잇게 해줌),react-dom은 react element를 html에 두는 역할! 
+
+        //실제 할땐 밑에처럼 하지 않으나, 작동방식 이해
+        const h3 = React.createElement(
+            "h3",
+            {onMouseEnter : () =>  console.log("mouse enter")
+             ,style:{color:"red"}
+            },
+             "hello I'm h3",
+
+             ); //두번째 argu에는 span의 property가 들어가 수 있음. (클래스 name, id 등등)
+                                                                //세번째 argu는  span의 content
+        
+        const btn = React.createElement("button", 
+        { //id,style같은거 말고 event 리스너 줄꺼임
+            onClick: () => console.log("im click"),
+            style: {backgroundColor : "tomato"}
+        }, 
+        "click me");
+
+        const div = React.createElement("div", null, [h3,btn]); //두개 요소르르 root에 넣기위해
+        ReactDOM.render(div,root)  // render은 여기 react element를 가지고 HTML로 만들어 배치한다는 것 ==> 사용자에게 보여준다 
+    </script>
+</html>

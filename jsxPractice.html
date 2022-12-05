@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div id="root"></div>
+    </body>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<!-- JSX = js 확장 문법 
+    컴포넌트 안에 컴포넌트 넣기!
+-->
+    <script type="text/babel">
+
+        const root = document.getElementById("root");
+        // const Title =( 
+        //     <h3 id="title" onMouseEnter={() => console.log("mouse enter")}>
+        //         Hello I'm a title
+        //     </h3>
+        // );
+
+        //밑에 title과 button을 함수로 만들면 div안에 글자만 넣어도 됨
+        // const Title =() =>( 
+        //     <h3 id="title" onMouseEnter={() => console.log("mouse enter")}>
+        //         Hello I'm a title
+        //     </h3>
+        // );
+        function Title() {
+            return (
+                <h3 id="title" onMouseEnter={() => console.log("mouse enter")}>
+                    Hello I'm a title
+                </h3>
+            );
+        }
+        //위와 아래는 똑같음
+
+        const Button =() => (
+            <button style={{backgroundColor : "tomato"}} onClick={() => console.log("I'm clicked")}>
+                click me
+            </button>
+        );
+        const Container = ()=>(
+        <div>
+            <button>비교</button>
+            <Title/>  
+            <Button/>
+        </div>
+        );
+        // const Container = 
+        // <div>
+        //     <button>비교</button>
+        //     <Title/>  
+        //     <Button/>
+        // </div>
+                //무조건 위의 컴포넌트는 대문자여야함. 안그럼 태그랑 햇갈려함
+
+        ReactDOM.render(<Container/>,root)  // render은 여기 react element를 가지고 HTML로 만들어 배치한다는 것 ==> 사용자에게 보여준다 
+    </script>
+</html>
