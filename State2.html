@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div id="root"></div>
+    </body>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<!-- 
+    const food = ["tomato","potato"];
+    const [myFavoFood, mySecondFavFood] = food;
+    myFavoFood
+        결과 : tomato
+
+-->
+    <script type="text/babel">
+        //let counter = 0;
+        const root = document.getElementById("root");
+
+        function App() {
+            let [counter, modifier] = React.useState(0); //modifier보단 set~~으로할껄
+            const onClick1 =() => { //리랜딩하는것보다, modifier 함수를 가지고, 이걸로 값을 바꿀것.
+                //modifier(counter+1); //이 함수 안에는 counter = 987987987; render(); 까지 들어있는 것
+                        //보통은 modifier이 아니라 setCounter
+                
+                //counter = counter + 1 //이렇게  이전 단계의 state를 이용해 현재 state로 바꾸려하면,결과가 다른곳에서 변경돼 우리의 예상이 다를수 있음. 버그임.
+                modifier((currentValue) => currentValue + 1); //리액트가 현재값이라고 보증
+
+                console.log(counter);
+            }
+            console.log(counter);
+            return(
+                <div>
+                    <h3>Total click : {counter}</h3>
+                    <button onClick={onClick1}>비교</button>
+                </div>
+                );
+        }
+        ReactDOM.render(<App/>,root);
+    </script>
+</html>

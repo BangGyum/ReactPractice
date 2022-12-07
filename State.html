@@ -18,14 +18,15 @@
         } //하지만 위 방법은 결국 , 다시 리랜딩 되는것임 = 근데 리액트는 전과 차이첨을 판단하고 안바꿀건 안바꿈
         
         function Render() {
-            ReactDOM.render(<Container/>,root);
+            ReactDOM.render(<App/>,root);
         }
-        function Container() {
-            <div>
-                <h3>Total click : {counter}</h3>
-                <button onClick={CountUp}>비교</button>
-
-            </div>
+        function App() {
+            return(
+                <div>
+                    <h3>Total click : {counter}</h3>
+                    <button onClick={CountUp}>비교</button>
+                </div>
+                );
         }
 
         // const Container = ()=>(
@@ -36,6 +37,6 @@
         // </div>
         // );
 
-        render();  // render은 여기 react element를 가지고 HTML로 만들어 배치한다는 것 ==> 사용자에게 보여준다 
+        Render();  // render은 여기 react element를 가지고 HTML로 만들어 배치한다는 것 ==> 사용자에게 보여준다 
     </script>
 </html>
