@@ -7,13 +7,12 @@
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <!-- 
-    React.useState() 는 array를 제공한다.
-    0 인덱스의 element는 현재의 값이 된다
+    분할 정복 divide AND conquer
 -->
     <script type="text/babel">
         const root = document.getElementById("root");
 
-        function App() {
+        function MinutesToHours() {
             //const [minutes, setMinutes] = React.useState(0);   
             const [amount, setAmount] = React.useState(0);   
             const [flipped, setFlipped] = React.useState(false);
@@ -37,7 +36,7 @@
                 //but 밑의 for이나 class같은 명시는 js(react.production.min.js) 라서, 하지마ㅏㄴ 이걸 production.min.js 로 바꾸면 
                     // class는 className으로 해야함 / for도 htmlfor로 해야함
                 <div>
-                    <h1>Converter</h1>
+                    <h1>MinutesToHours</h1>
                     
                     <label htmlFor="min">Minutes</label>
                     <input 
@@ -66,6 +65,62 @@
 
             }
 
+        function KmToMiles() {
+            //1.609
+
+            const [range, setRange] = React.useState(0);
+            const [unit, setUnit] = React.useState(true); //km
+            const inputChange = () => {
+                setUnit((currentValue)=>!currentValue);
+            }
+            const rangeChange = () => {
+                setRange(event.target.value);
+            }
+            return(
+                <div>
+                    
+                    <p>
+                        <input value={unit ? range : range *1.609 } onChange={rangeChange} type="number" disabled={!unit}/>
+                        Km
+                    </p>
+                    <p>
+                        <input value={unit ? range/1.609 : range } onChange={rangeChange} type="number" disabled={unit}/>
+                        Mile
+                    </p>
+                    <p>
+                        <button onClick={inputChange}>flip km and mile </button>
+                        <label>{unit}</label>
+                    </p>
+                </div>
+                );
+        }
+        
+        function App() {
+            const [index, setIndex] = React.useState("xx");
+            console.log('render w/',index);
+            const select =(event)=>{
+                setIndex(event.target.value);
+                
+            }
+            return(
+                <div>
+                    <h1>Super Converter</h1>
+                    <select value={index} onChange={select}>
+                        <option value="xx">select your unit</option>
+                        <option value="0">MinutesToHours</option>
+                        <option value="1">KmToMiles</option>
+                    </select>
+                    <hr />
+                    {index === "xx" ? "Please select your units" : null}
+                    {index === "0" ? <MinutesToHours /> : null}
+                    {index === "1" ? <KmToMiles /> : null }
+                </div>
+                );
+
+            }
+
+
+        
         ReactDOM.render(<App/>,root);
     </script>
 </html>
