@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div id="root"></div>
+    </body>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<!-- 
+    버튼은 여러개다. 그럴땐 하나로 만들어서 text만 바꾸자
+-->
+    <script type="text/babel">
+        const root = document.getElementById("root");
+
+        // function Btn(props){
+        //     console.log(props);
+        //     return <button style={{
+        //         backgroundColor: "tomato",
+        //         color:"white",
+        //         padding:"10px 20px",
+        //         border : 0,
+        //         borderRadius:10
+        //     }}>{props.bangText}</button>
+        // }
+        //그러나 위처럼 안함. 더 간단히 하지 , props 안에 객체를 바로 꺼내줌
+        function Btn({ bangText, x, onClick }){
+            console.log(bangText, x);
+            return <button 
+                onClick={onClick} 
+                style={{
+                    backgroundColor: "tomato",
+                    color:"white",
+                    padding:"10px 20px",
+                    border : 0,
+                    borderRadius:10,
+                    fontSize: x ? 15 : 13
+                }}>{bangText}</button>
+        }
+
+        //위는 컴포넌트
+        function App() {
+            const [value, setValue] = React.useState("save Change");
+            const changeValue = () =>{
+                setValue("Revert Changes");
+            }
+            return(
+                //알겠지만 아래는 JSX의 내부라고 부름
+                //jsx의 태그에서의 onClick은 이벤트 리스너가 아님. 그냥 props임
+                <div>
+                    <Btn bangText={value} x={true} onClick={changeValue}/>
+                    <Btn bangText="Continues"/>
+                </div>
+                //위같이 쓰는건 ,Btn({bangText:"svae Change"}) 와 같다고 볼수있지
+                );
+
+            }
+
+
+        
+        ReactDOM.render(<App/>,root);
+    </script>
+</html>
