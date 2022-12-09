@@ -37,6 +37,10 @@
                 }}>{bangText}</button>
         }
 
+        const MemorizedBtn = React.memo(Btn);
+        //위는 메모 기능으로, 더이상 리렌더링을 하지않음
+        //메모기능을 안쓰면, value가 바뀔때마다 전부 리렌더링 돼서
+
         //위는 컴포넌트
         function App() {
             const [value, setValue] = React.useState("save Change");
@@ -47,8 +51,8 @@
                 //알겠지만 아래는 JSX의 내부라고 부름
                 //jsx의 태그에서의 onClick은 이벤트 리스너가 아님. 그냥 props임
                 <div>
-                    <Btn bangText={value} x={true} onClick={changeValue}/>
-                    <Btn bangText="Continues"/>
+                    <MemorizedBtn bangText={value} x={true} onClick={changeValue}/>
+                    <MemorizedBtn bangText="Continues"/>
                 </div>
                 //위같이 쓰는건 ,Btn({bangText:"svae Change"}) 와 같다고 볼수있지
                 );
