@@ -31,7 +31,6 @@
         Btn.propTypes = {
             text: PropTypes.string,
             fontSize: PropTypes.number.isRequired
-
         }
 
         const MemorizedBtn = React.memo(Btn);
@@ -46,11 +45,8 @@
                     <MemorizedBtn bangText="Continues"/>
                 </div>
                 );
-
             }
 
-
-        
         ReactDOM.render(<App/>,root);
     </script>
 </html>
